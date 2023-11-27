@@ -1,2 +1,6 @@
 rich
-click
+openai
+questionary
+langchain
+plotext
+pyfiglet

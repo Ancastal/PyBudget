@@ -1,13 +1,10 @@
 #!/bin/python3
-# Program to account expenses and determine a budget
-# Syntax: ./pybudget -p <value of your paycheck>
 
 import decimal as d  # Allows me to accurately round up
 from os import path  # Allows me to determine if file exists
 from sys import exit as terminate  # Allows me to end with codes
 from rich import print  # Allows me to color and format text output
 from rich.console import Console  # Allows me to have clean word wrapping
-import click  # Allows me to have better argument acquisition and cleaner CLI
 import questionary
 
 

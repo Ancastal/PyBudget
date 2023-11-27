@@ -15,7 +15,7 @@ To get started with PyBudget:
 
 1. **Clone the Repository**
 ```bash 
-git clone https://github.com/yourusername/PyBudget.git
+git clone https://github.com/Ancastal/PyBudget/PyBudget.git
 ```
 2. **Install Dependancies and Start the Application**
 ```bash 
@@ -32,4 +32,4 @@ Let the AI analyze your data and provide budget recommendations.
 Monitor your spending and adjust your budget as needed.
 
 ## License
-Distributed under the MIT License. See LICENSE for more information.# PyBudget
+Distributed under the MIT License. See LICENSE for more information.

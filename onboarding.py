@@ -10,9 +10,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.pydantic_v1 import BaseModel, Field
 import yaml
-
-#openai_api_key="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"
-
 from langchain.pydantic_v1 import BaseModel, Field
 from typing import List, Optional
 
