@@ -1,4 +1,5 @@
 from typing import Optional
+from rich.prompt import Prompt
 
 from langchain.chains.openai_functions import (
     create_openai_fn_chain,
@@ -33,7 +34,7 @@ class Person(BaseModel):
 def onboarding():
     # If we pass in a model explicitly, we need to make sure it supports the OpenAI function-calling API.
     try:
-        openai_api_key = Prompt.ask("Hello! To start, please enter your OpenAI API key:", default=openai_api_key)
+        openai_api_key = Prompt.ask("Hello! To start, please enter your OpenAI API key")
         llm = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key=openai_api_key)
         prompt = ChatPromptTemplate.from_messages(
             [
@@ -51,7 +52,6 @@ def onboarding():
 
         runnable = create_structured_output_runnable(Person, llm, prompt)
 
-        from rich.prompt import Prompt
 
         print("Hello! Please, tell me a little bit about yourself. I would like to possibly know your name, age, monthly income, favorite color, monthly rent, and monthly expenditures. Finally, I would like to know your current savings.")
         user_input = input("Enter your input: ")

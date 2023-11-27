@@ -27,8 +27,9 @@ def info(content, kind='info'):
 
     elif kind == 'question':
         print(f'[bold yellow][[?]][/bold yellow] [black]{content}[/black]')
+        
 
-def paragraph(content: str, style='black'):
+def paragraph(content: str, style='grey50'):
     """
     This prints properly wrapped text to the console.
 
@@ -146,39 +147,8 @@ def getBudget(paycheck: float, expenses: float, save: int, invest: int):
     info(f'You will invest ${invest:.02f}')
     info(f'You will save ${save:.02f}')
     info(f'Available Budget -------> [bold green]${spend:.02f}[/bold green]\n')
-
-    # 3.1 Easter eggs
-    easterEgg(spend)
-
     # 4. END
     terminate(0)
-
-
-def easterEgg(budget):
-    """
-    Prints informative information
-
-    :param budget: the amount that you can spend
-    :return: None
-    """
-
-    if budget >= 69 and budget < 70:
-        print('\n[italic white]Nice[/italic white]')
-
-    elif budget >= 420 and budget < 421:
-        print('[italic bold green]https://www.youtube.com/watch?v=LT9lGggkWCU[/italic bold green]')
-
-    elif budget in [1.98, 19.87, 198.70, 1987]:  # NTS: 118.68 for personal rickroll
-        paragraph('[bold red][!!!][/bold red] [bold blue]Important Information ' +
-                  'Regarding Your Budget: ' +
-                  'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-
-    elif budget >= 666 and budget < 667:
-        print('😈😈😈😈😈 [bold italic red]I\'m on the HIGHWAY TO HELL!!!!![/bold italic red]')
-        print('[bold italic red]https://www.youtube.com/watch?v=l482T0yNkeo[/bold italic red]')
-
-    print('')
-
 
 def setupConfig():
     """
@@ -587,6 +557,7 @@ def affordability_check(monthly_income, monthly_expenses, monthly_debts, current
 
     ai_decision = questionary.confirm("Would you like to see the AI's decision?").ask()
     if ai_decision:
+        print("")
         openai_api_key = settings['openai_api_key']
         expenses = ", ".join([f"{item}: ${cost:.2f}" for item, cost in getExpenses()])
         response = purchase_suggest_gpt(expenses, computer_cost)
@@ -622,6 +593,7 @@ def menu():
                 "Optimize budget",
                 "Plan a purchase",
                 "Check statistics",
+                "Settings",
                 "Exit"
             ]).ask()
 
@@ -683,6 +655,29 @@ def menu():
             print(f"\n[bold magenta]========= OPTIMIZED BUDGET =========[/bold magenta]")
             paragraph(f"Suggestion: {response}")
             input("\nPress enter to continue...")
+        elif choice == "Settings":
+            print("\n[bold red]========= SETTINGS =========[/bold red]")
+            print(f"Name: {settings['name']}")
+            print(f"Age: {settings['age']}")
+            print(f"Monthly Income: ${settings['monthly_income']}")
+            print(f"Monthly Rent: ${settings['monthly_rent']}")
+            print(f"Current Savings: ${settings['current_savings']}")
+            print(f"Favorite Color: {settings['fav_color']}")
+            print(f"OpenAI API Key: {settings['openai_api_key']}")
+            print("")
+            edit_settings = questionary.confirm("Would you like to edit your settings?").ask()
+            if edit_settings:
+                settings['name'] = questionary.text("What is your name?").ask()
+                settings['age'] = questionary.text("What is your age?").ask()
+                settings['monthly_income'] = questionary.text("What is your monthly income?").ask()
+                settings['monthly_rent'] = questionary.text("What is your monthly rent?").ask()
+                settings['current_savings'] = questionary.text("What is your current savings?").ask()
+                settings['fav_color'] = questionary.text("What is your favorite color?").ask()
+                settings['openai_api_key'] = questionary.text("What is your OpenAI API key?").ask() if settings['openai_api_key'] == '' else settings['openai_api_key']
+                with open("settings.yaml", "w") as file:
+                    yaml.dump(settings, file)
+                print("Settings updated.")
+                input("\nPress enter to continue...")
         elif choice == "Exit":
             break
 
