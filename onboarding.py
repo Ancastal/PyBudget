@@ -74,7 +74,7 @@ def onboarding():
         # Printing within a panel for a neat and organized appearance
         console.print(Panel(text))
         print("")
-        user_input = input("Enter your input: ")
+        user_input = input("Enter your presentation: ")
 
         response = runnable.invoke({"input": user_input})
         
