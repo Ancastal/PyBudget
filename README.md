@@ -2,6 +2,8 @@
 
 PyBudget is an innovative, AI-powered budgeting tool designed to help individuals manage their finances more effectively. By leveraging the latest advancements in artificial intelligence, PyBudget offers a smart and intuitive approach to budget management.
 
+![The main menu of PyBudget](https://i.imgur.com/0Xj7RNu.png)
+
 ## Features
 
 - **AI-Driven Insights**: PyBudget uses AI algorithms to analyze your spending patterns, providing valuable insights to optimize your budget.

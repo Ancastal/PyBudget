@@ -1,0 +1,17 @@
+settings.yaml
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info
+*.manifest
+*.spec
+*.bak
+*.swp
+*.out
+*.log
+*.vscode
+*.idea
+*.DS_Store
