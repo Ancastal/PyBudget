@@ -53,11 +53,31 @@ def onboarding():
         runnable = create_structured_output_runnable(Person, llm, prompt)
 
 
-        print("Hello! Please, tell me a little bit about yourself. I would like to possibly know your name, age, monthly income, favorite color, monthly rent, and monthly expenditures. Finally, I would like to know your current savings.")
+        from rich.console import Console
+        from rich.text import Text
+        from rich.panel import Panel
+        from rich.markdown import Markdown
+
+        console = Console()
+
+        # Creating styled text
+        text = Text("Hello! How are you? Tell me a bit about yourself.", style="bold green")
+        text.append("\nI would like to possibly know:", style="bold blue")
+        text.append("\n- Name", style="bold cyan")
+        text.append("\n- Age", style="bold cyan")
+        text.append("\n- Monthly Income", style="bold cyan")
+        text.append("\n- Favorite Color", style="bold cyan")
+        text.append("\n- Monthly Rent", style="bold cyan")
+        text.append("\n- Monthly Expenditures", style="bold cyan")
+        text.append("\nFinally, I would like to know your current savings.", style="bold magenta")
+
+        # Printing within a panel for a neat and organized appearance
+        console.print(Panel(text))
+        print("")
         user_input = input("Enter your input: ")
 
         response = runnable.invoke({"input": user_input})
-        print(response)
+        
         with open("expenses.acct", "w") as f:
             # Extract monthly expenditures
             monthly_expenditures = response.monthly_expenditures if response.monthly_expenditures else []
