@@ -32,7 +32,6 @@ class Person(BaseModel):
     current_savings: Optional[int] = Field(None, description="The person's current savings in the bank")
 
 def onboarding():
-    # If we pass in a model explicitly, we need to make sure it supports the OpenAI function-calling API.
     try:
         openai_api_key = Prompt.ask("Hello! To start, please enter your OpenAI API key")
         llm = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key=openai_api_key)
@@ -71,7 +70,7 @@ def onboarding():
         text.append("\n- Monthly Expenditures", style="bold cyan")
         text.append("\nFinally, I would like to know your current savings.", style="bold magenta")
 
-        # Printing within a panel for a neat and organized appearance
+        # Printing within a panel for better appearance
         console.print(Panel(text))
         print("")
         user_input = input("Enter your presentation: ")
@@ -88,7 +87,7 @@ def onboarding():
                 amount = expenditure.amount
                 f.write(f'{category},{amount}\n')
                 
-        # Prepare the settings dictionary with the necessary data
+        # Prepare the settings dictionary with the extracted data
         settings = {
             'monthly_rent': response.monthly_rent if response.monthly_rent else 0,
             'monthly_income': response.monthly_income if response.monthly_income else 0,
@@ -99,7 +98,7 @@ def onboarding():
             'openai_api_key': openai_api_key,
         }
 
-        # Write the settings dictionary to the settings.yaml file
+        # Write the settings to the settings.yaml file
         with open("settings.yaml", "w") as file:
             yaml.dump(settings, file)
 
